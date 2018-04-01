@@ -1,0 +1,15 @@
+version: '3'
+services:
+  fb-marketing-validation:
+    image: node:9.3.0
+    container_name: fb_marketing_validation
+    hostname: fb-marketing-validation
+    volumes:
+      - $PWD:/var/lib/fb-marketing-validation:rw
+      - /tmp:/tmp
+    working_dir: /var/lib/fb-marketing-validation
+    ports:
+      - 3003:4000
+      - 9229:9229
+    command: bash -c "sleep 99999999"
+
