@@ -4,11 +4,11 @@ import CampaignObjectives from "../models/ad/campaignObjectives";
 // https://developers.facebook.com/docs/marketing-api/validation/v2.12
 
 // const mappingByAssetType = {
-//   AdFormat: [supported objectives]
+//   [AdFormat]: [supported objectives]
 // }
 //
 // const mappingByObjectiveType = {
-//   CampaignObjective: [supported asset types]
+//   [CampaignObjective]: [supported ad formats]
 // }
 
 const mappingByAdFormat = {

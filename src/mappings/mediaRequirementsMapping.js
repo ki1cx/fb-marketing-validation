@@ -16,7 +16,7 @@ function precisionRound(number, precision) {
 
 // const Mapping = {
 //   [AssetTypes.video]: {
-//     position: {
+//     [position]: {
 //       ratios: {
 //         min: number
 //         max: number
@@ -37,11 +37,12 @@ function precisionRound(number, precision) {
 //         min: number in seconds
 //         max: number in seconds
 //       },
-//       messages: [],
+//       errors: [],
+//       errorMessages: [],
 //     }
 //   },
 //   [AssetTypes.image]: {
-//     position: {
+//     [position]: {
 //       ratios: [],
 //       ratioTolerance: percent,
 //       width: {
@@ -59,7 +60,8 @@ function precisionRound(number, precision) {
 //         width: number,
 //         height: number
 //       },
-//       messages: [],
+//       errors: [],
+//       errorMessages: [],
 //     }
 //   }
 // };

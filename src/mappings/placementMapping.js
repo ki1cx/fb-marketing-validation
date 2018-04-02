@@ -24,24 +24,24 @@ const validation = {
 
     return numberOfOtherPositions;
   },
-  addPositions: function(placement, addPlacement) {
-    Object.keys(addPlacement).map(publisher => {
-      placement[publisher] = [... new Set(placement[publisher].concat(addPlacement[publisher]))];
+  addPositions: function(placements, addPlacements) {
+    Object.keys(addPlacements).map(publisher => {
+      placements[publisher] = [... new Set(placements[publisher].concat(addPlacements[publisher]))];
     })
 
-    return placement;
+    return placements;
   },
-  removePositions: function(placement, removePlacement) {
-    Object.keys(removePlacement).map(publisher => {
-      removePlacement[publisher].map(position => {
-        const index = placement[publisher].indexOf(position);
+  removePositions: function(placements, removePlacements) {
+    Object.keys(removePlacements).map(publisher => {
+      removePlacements[publisher].map(position => {
+        const index = placements[publisher].indexOf(position);
         if(index >= 0) {
-          placement[publisher].splice(index, 1);
+          placements[publisher].splice(index, 1);
         }
       })
     })
 
-    return placement;
+    return placements;
   },
   //placements is a mutable parameter
   preProcess: function (placements) {
@@ -169,9 +169,9 @@ const validation = {
 }
 
 // const Mapping = {
-//   CampaignObjective: {
-//     DevicePlatform: {
-//       PublisherPlatform: [positions]
+//   [CampaignObjective]: {
+//     [DevicePlatform]: {
+//       [PublisherPlatform]: [positions]
 //     }
 //   }
 // }

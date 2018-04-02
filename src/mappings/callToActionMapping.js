@@ -6,8 +6,8 @@ import CallToActions from '../models/ad/callToActions';
 // https://www.facebook.com/business/ads-guide
 
 // const Mapping = {
-//   AdFormat: {
-//     CampaignObjective: [CallToActions]
+//   [AdFormat]: {
+//     [CampaignObjective]: [CallToActions]
 //   }
 // }
 
