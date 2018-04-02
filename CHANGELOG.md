@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.0.2-8] - 2018-04-01
+- Update keywords
+- Fix import statements in README
+- Add index file
+
 ## [0.0.2-6] - 2018-04-01
 - Cleanup
 - Test add/remove placement changes operations
