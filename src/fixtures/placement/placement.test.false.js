@@ -29,7 +29,13 @@ module.exports = {
           "messenger": ["messenger_home"]
         },
       },
-      response: {"devicePlatforms":[],"placements":{"add":{"facebook":[],"instagram":["story"],"audience_network":[],"messenger":[]},"remove":{"facebook":["feed","right_hand_column","marketplace","instant_article"],"instagram":["stream"],"audience_network":["classic","rewarded_video"],"messenger":["messenger_home"]}},"messages":["story cannot be used with the other placements, including stream and Facebook ones."]}
+      response: {"devicePlatforms":[],"placements":{"add":{"facebook":[],"instagram":["story"],"audience_network":[],"messenger":[]},"remove":{"facebook":["feed","right_hand_column","marketplace","instant_article"],"instagram":["stream"],"audience_network":["classic","rewarded_video"],"messenger":["messenger_home"]}},"messages":["story cannot be used with the other placements, including stream and Facebook ones."]},
+      placementAfterChanges: {
+        "facebook": [],
+        "instagram": ["story"],
+        "audience_network": [],
+        "messenger": []
+      },
     }, {
       //instant article must be used with feed
       params: {
@@ -43,7 +49,8 @@ module.exports = {
           "messenger": []
         },
       },
-      response: {"devicePlatforms":[],"placements":{"add":{"facebook":["feed"],"instagram":[],"audience_network":[],"messenger":[]},"remove":{"facebook":[],"instagram":[],"audience_network":[],"messenger":[]}},"messages":["feed must be used with instant_article"]}
+      response: {"devicePlatforms":[],"placements":{"add":{"facebook":["feed"],"instagram":[],"audience_network":[],"messenger":[]},"remove":{"facebook":[],"instagram":[],"audience_network":[],"messenger":[]}},"messages":["feed must be used with instant_article"]},
+      placementAfterChanges: {"audience_network": ["classic", "rewarded_video"], "facebook": ["right_hand_column", "marketplace", "instant_article", "feed"], "instagram": ["stream"], "messenger": []},
     }, {
       //messenger home must be used with feed
       params: {
@@ -57,7 +64,13 @@ module.exports = {
           "messenger": []
         },
       },
-      response: {"devicePlatforms":[],"placements":{"add":{"facebook":["feed"],"instagram":[],"audience_network":[],"messenger":[]},"remove":{"facebook":[],"instagram":[],"audience_network":[],"messenger":[]}},"messages":["If you select messenger_home, you must also select facebook publisher_platform and feed in facebook_positions."]}
+      response: {"devicePlatforms":[],"placements":{"add":{"facebook":["feed"],"instagram":[],"audience_network":[],"messenger":[]},"remove":{"facebook":[],"instagram":[],"audience_network":[],"messenger":[]}},"messages":["If you select messenger_home, you must also select facebook publisher_platform and feed in facebook_positions."]},
+      placementAfterChanges: {
+        "facebook": ["right_hand_column", "marketplace", "feed"],
+        "instagram": ["stream"],
+        "audience_network": ["classic", "rewarded_video"],
+        "messenger": ["messenger_home"]
+      },
     }, {
       //unselect last remaining placement
       params: {
@@ -71,7 +84,13 @@ module.exports = {
           "messenger": []
         },
       },
-      response: {"devicePlatforms":[],"placements":{"add":{"facebook":[],"instagram":[],"audience_network":[],"messenger":[]},"remove":{"facebook":[],"instagram":[],"audience_network":[],"messenger":[]}},"messages":[]}
+      response: {"devicePlatforms":[],"placements":{"add":{"facebook":[],"instagram":[],"audience_network":[],"messenger":[]},"remove":{"facebook":[],"instagram":[],"audience_network":[],"messenger":[]}},"messages":[]},
+      placementAfterChanges: {
+        "facebook": [],
+        "instagram": [],
+        "audience_network": [],
+        "messenger": []
+      },
     }, {
       //audience network can't be used by itself
       params: {
@@ -85,7 +104,8 @@ module.exports = {
           "messenger": []
         },
       },
-      response: {"devicePlatforms":[],"placements":{"add":{"facebook":[],"instagram":[],"audience_network":[],"messenger":[]},"remove":{"facebook":[],"instagram":[],"audience_network":[],"messenger":[]}},"messages":["audience_network cannot be selected by itself only."]}
+      response: {"devicePlatforms":[],"placements":{"add":{"facebook":[],"instagram":[],"audience_network":[],"messenger":[]},"remove":{"facebook":[],"instagram":[],"audience_network":[],"messenger":[]}},"messages":["audience_network cannot be selected by itself only."]},
+      placementAfterChanges: {"audience_network": ["classic"], "facebook": [], "instagram": [], "messenger": []},
     }, {
       params: {
         selectedDevicePlatform: 'all',
@@ -98,7 +118,8 @@ module.exports = {
           "messenger": ["messenger_home"]
         },
       },
-      response: {"devicePlatforms":[],"placements":{"add":{"facebook":["feed"],"instagram":[],"audience_network":[],"messenger":[]},"remove":{"facebook":[],"instagram":[],"audience_network":[],"messenger":[]}},"messages":["feed must be used with instant_article","If you select messenger_home, you must also select facebook publisher_platform and feed in facebook_positions."]}
+      response: {"devicePlatforms":[],"placements":{"add":{"facebook":["feed"],"instagram":[],"audience_network":[],"messenger":[]},"remove":{"facebook":[],"instagram":[],"audience_network":[],"messenger":[]}},"messages":["feed must be used with instant_article","If you select messenger_home, you must also select facebook publisher_platform and feed in facebook_positions."]},
+      placementAfterChanges: {"audience_network": ["classic", "rewarded_video"], "facebook": ["right_hand_column", "marketplace", "instant_article", "feed"], "instagram": ["stream"], "messenger": ["messenger_home"]},
     }]
   }
 }

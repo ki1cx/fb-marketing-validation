@@ -24,7 +24,7 @@ it('Placement Validation - postprocess - valid', () => {
 });
 
 it('Placement Validation - postprocess - invalid', () => {
-  expect.assertions(6);
+  expect.assertions(12);
 
   const test = require('../fixtures/placement/placement.test.false');
   const postprocessTests = test.validate.postprocess;
@@ -32,5 +32,10 @@ it('Placement Validation - postprocess - invalid', () => {
   postprocessTests.map(postprocess => {
     const response = PlacementValidations.postProcess(postprocess.params.placements, postprocess.params.selectedDevicePlatform, postprocess.params.publisher, postprocess.params.placement);
     expect(response).toEqual(postprocess.response);
+
+    PlacementValidations.addPositions(postprocess.params.placements, response.placements.add);
+    PlacementValidations.removePositions(postprocess.params.placements, response.placements.remove);
+
+    expect(postprocess.params.placements).toEqual(postprocess.placementAfterChanges);
   });
 });
