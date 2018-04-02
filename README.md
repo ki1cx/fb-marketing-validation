@@ -169,30 +169,30 @@ npm install fb-marketing-validation --save
 import {
   validateCallToAction,
   CallToActionMapping
-} from '../lib/callToActionValidation';
+} from 'fb-marketing-validation/lib/callToActionValidation';
 import {
   CreativeMappingByAdFormat,
   CreativeMappingByObjective,
   validateAdFormat
-} from "../lib/creativeValidation";
+} from "fb-marketing-validation/lib/creativeValidation";
 import {
   calculateMediaRequirements,
   validateMedia,
   MediaRequirements,
-} from '../lib/mediaValidation';
+} from 'fb-marketing-validation/lib/mediaValidation';
 import {
   PlacementValidations,
   PlacementMapping,
-} from '../lib/placementValidation';
+} from 'fb-marketing-validation/lib/placementValidation';
 
-import CampaignObjectives from '../lib/models/ad/campaignObjectives';
-import AdFormats from '../lib/models/ad/adFormats';
-import CallToActions from '../lib/models/ad/callToActions';
-import AssetTypes from "../lib/models/ad/assetTypes";
-import FacebookPositions from "../lib/models/ad/facebookPositions";
-import InstagramPositions from "../lib/models/ad/instagramPositions";
-import DevicePlatforms from "../lib/models/ad/devicePlatforms";
-import PublisherPlatforms from "../lib/models/ad/publisherPlatforms";
+import CampaignObjectives from 'fb-marketing-validation/lib/models/ad/campaignObjectives';
+import AdFormats from 'fb-marketing-validation/lib/models/ad/adFormats';
+import CallToActions from 'fb-marketing-validation/lib/models/ad/callToActions';
+import AssetTypes from "fb-marketing-validation/lib/models/ad/assetTypes";
+import FacebookPositions from "fb-marketing-validation/lib/models/ad/facebookPositions";
+import InstagramPositions from "fb-marketing-validation/lib/models/ad/instagramPositions";
+import DevicePlatforms from "fb-marketing-validation/lib/models/ad/devicePlatforms";
+import PublisherPlatforms from "fb-marketing-validation/lib/models/ad/publisherPlatforms";
 
 
 void function () {
