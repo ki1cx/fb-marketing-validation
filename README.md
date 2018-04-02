@@ -1,11 +1,160 @@
-# fb-markting-validation
+# FB Markting Validation
 
-FB Marketing API Validation Utility
+Validates Call-To-Action, Creative, Media, Placement.
 
-https://developers.facebook.com/docs/marketing-api/validation/v2.12
-https://www.facebook.com/business/m/one-sheeters/video-requirements
-https://www.facebook.com/business/ads-guide
+- https://developers.facebook.com/docs/marketing-api/validation/v2.12
+- https://www.facebook.com/business/m/one-sheeters/video-requirements
+- https://www.facebook.com/business/ads-guide
 
+## Validations
+
+### Creative
+
+- CreativeMappingByAdFormat - valid campaign objectives by ad format
+
+	```
+	{
+	  [AdFormat]: [supported objectives]
+	}
+	```
+
+- CreativeMappingByObjective - valid ad formats by campaign objectives
+
+	```
+	{
+	  [CampaignObjective]: [supported ad formats]
+	}
+	```
+
+- validateAdFormat - function (campaignObjective, adFormat)
+
+### Call-To-Action
+
+- CallToActionMapping - valid call-to-actions by ad format, campaign objective
+
+	```
+	{
+	  [AdFormat]: {
+	    [CampaignObjective]: [CallToActions]
+	  }
+	}
+	```
+
+- validateAdFormat - function (campaignObjective, adFormat, callToAction)
+
+### Media
+
+- MediaRequirements - valid metadata by asset type, position
+
+	```
+	{
+	  [AssetTypes.video]: {
+	    [position]: {
+	      ratios: {
+	        min: number
+	        max: number
+	      },
+	      ratioTolerance: percent
+	      width: {
+	        min: number pixels
+	        max: number pixels,
+	      },
+	      height: {
+	        min: number pixels,
+	        max: number pixels,
+	      },
+	      size: {
+	        max: number in MB
+	      },
+	      length: {
+	        min: number in seconds
+	        max: number in seconds
+	      },
+	      errors: [],
+	      errorMessages: [],
+	    }
+	  },
+	  [AssetTypes.image]: {
+	    [position]: {
+	      ratios: [],
+	      ratioTolerance: percent,
+	      width: {
+	        min: number pixels,
+	        max: number pixels,
+	      },
+	      height: {
+	        min: number pixels,
+	        max: number pixels,
+	      },
+	      size: {
+	        max: number in MB
+	      },
+	      recommended: {
+	        width: number,
+	        height: number
+	      },
+	      errors: [],
+	      errorMessages: [],
+	    }
+	  }
+	}
+	```
+
+- calculateMediaRequirements - function (assetTypes, placements)
+	
+	- placements
+	
+		```
+		{
+		  [CampaignObjective]: {
+		    [DevicePlatform]: {
+		      [PublisherPlatform]: [positions]
+		    }
+		  }
+		}
+		```
+
+- validateMedia - function (mediaRequirements, media)
+
+	- returns media with errors and errorMessages
+
+### Placement
+
+- PlacementValidations.preProcess - function (**placements**)
+
+	- returns **placements** after removing the least number of placements to make a valid set
+	- **placements** is a mutable parameter
+
+- PlacementValidations.postProcess - function (**placements**, devicePlatform, selectedPublisher, selectedPosition)
+
+	- modifies placements given selectedPublisher, selectedPosition
+	
+		- if (selectedPublisher, selectedPosition) already exist, it is removed
+		- if (selectedPublisher, selectedPosition) does not exist, it is added
+
+	- with the modifications made above, runs validation and returns changes needed to make a valid set of placements
+	
+		```
+		{
+	      devicePlatforms: [],
+	      placements: {
+	        add: {},
+	        remove: {},
+	      },
+	      messages: [],
+	    }
+		```
+	- **placements** is a mutable parameter
+		
+- PlacementValidations.addPositions - function (**placements**, addPlacements)
+
+	- Applies the changes returned by postProcess
+	- **placements** is a mutable parameter
+	
+- PlacementValidations.removePositions - function (**placements**, removePlacements)
+
+	- Applies the changes returned by postProcess
+	- **placements** is a mutable parameter
 
 ## Install
 
@@ -136,13 +285,18 @@ void function () {
   // Placement Validation
   //===================================
 
-  //preprocess placements - cleanup a set of placements by automatically removing the least number ofplacements to make a valid set
+  //preprocess placements - cleanup a set of placements by automatically removing the least number of placements to make a valid set
   const preProcessedPlacements = PlacementValidations.preProcess(placementsToPreProcess);
   console.log(`preProcessedPlacements: ${JSON.stringify(preProcessedPlacements)}\n`);
 
   //postprocess placements - given a set of placements, process how a newly selected device platform, publisher, and position validates
-  const postProcessedPlacements = PlacementValidations.postProcess(previousPlacement, selectedDevicePlatform, selectedPublisher, selectedPosition);
-  console.log(`postProcessedPlacements: ${JSON.stringify(postProcessedPlacements)}\n`);
+  const changesNeededToMakeValidSetOfPlacements = PlacementValidations.postProcess(previousPlacement, selectedDevicePlatform, selectedPublisher, selectedPosition);
+  console.log(`changesNeededToMakeValidSetOfPlacements: ${JSON.stringify(changesNeededToMakeValidSetOfPlacements)}\n`);
+
+  PlacementValidations.addPositions(previousPlacement, changesNeededToMakeValidSetOfPlacements.placements.add);
+  PlacementValidations.removePositions(previousPlacement, changesNeededToMakeValidSetOfPlacements.placements.remove);
+
+  console.log(`valid placements after applying validation changes: ${JSON.stringify(previousPlacement)}\n`);
 
 }();
 
@@ -170,7 +324,9 @@ mediaRequirementForImageFacebookFeedPlacement: {"ratio":{"min":0.5625,"max":1.77
 
 preProcessedPlacements: {"facebook":["feed","right_hand_column","marketplace","instant_article"],"instagram":["stream"],"audience_network":["classic","rewarded_video"],"messenger":["messenger_home"]}
 
-postProcessedPlacements: {"devicePlatforms":[],"placements":{"add":{"facebook":[],"instagram":["story"],"audience_network":[],"messenger":[]},"remove":{"facebook":["feed","right_hand_column","marketplace","instant_article"],"instagram":["stream"],"audience_network":["classic","rewarded_video"],"messenger":["messenger_home"]}},"messages":["story cannot be used with the other placements, including stream and Facebook ones."]}
+changesNeededToMakeValidSetOfPlacements: {"devicePlatforms":[],"placements":{"add":{"facebook":[],"instagram":["story"],"audience_network":[],"messenger":[]},"remove":{"facebook":["feed","right_hand_column","marketplace","instant_article"],"instagram":["stream"],"audience_network":["classic","rewarded_video"],"messenger":["messenger_home"]}},"messages":["story cannot be used with the other placements, including stream and Facebook ones."]}
+
+valid placements after applying validation changes: {"facebook":[],"instagram":["story"],"audience_network":[],"messenger":[]}
 ```
 
 ## Contributing Guide

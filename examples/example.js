@@ -117,12 +117,17 @@ void function () {
   // Placement Validation
   //===================================
 
-  //preprocess placements - cleanup a set of placements by automatically removing the least number ofplacements to make a valid set
+  //preprocess placements - cleanup a set of placements by automatically removing the least number of placements to make a valid set
   const preProcessedPlacements = PlacementValidations.preProcess(placementsToPreProcess);
   console.log(`preProcessedPlacements: ${JSON.stringify(preProcessedPlacements)}\n`);
 
   //postprocess placements - given a set of placements, process how a newly selected device platform, publisher, and position validates
-  const postProcessedPlacements = PlacementValidations.postProcess(previousPlacement, selectedDevicePlatform, selectedPublisher, selectedPosition);
-  console.log(`postProcessedPlacements: ${JSON.stringify(postProcessedPlacements)}\n`);
+  const changesNeededToMakeValidSetOfPlacements = PlacementValidations.postProcess(previousPlacement, selectedDevicePlatform, selectedPublisher, selectedPosition);
+  console.log(`changesNeededToMakeValidSetOfPlacements: ${JSON.stringify(changesNeededToMakeValidSetOfPlacements)}\n`);
+
+  PlacementValidations.addPositions(previousPlacement, changesNeededToMakeValidSetOfPlacements.placements.add);
+  PlacementValidations.removePositions(previousPlacement, changesNeededToMakeValidSetOfPlacements.placements.remove);
+
+  console.log(`valid placements after applying validation changes: ${JSON.stringify(previousPlacement)}\n`);
 
 }();
