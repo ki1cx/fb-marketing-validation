@@ -110,7 +110,7 @@ void function () {
 
   //get media requirement for image media for use with facebook feed placement
   const mediaRequirementForImageFacebookFeedPlacement = MediaRequirements[AssetTypes.image][FacebookPositions.feed];
-  console.log(`mediaRequirementForImageFacebookFeedPlacement: ${JSON.stringify(mediaRequirementForImageFacebookFeedPlacement)}`);
+  console.log(`mediaRequirementForImageFacebookFeedPlacement: ${JSON.stringify(mediaRequirementForImageFacebookFeedPlacement)}\n`);
 
 
   //===================================
