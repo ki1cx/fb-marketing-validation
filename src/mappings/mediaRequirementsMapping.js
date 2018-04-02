@@ -493,10 +493,6 @@ const _calculateMediaRequirements = (assetTypes, placements) => {
     //ratio compare
     //no overlap
     if (accumulator.ratio.min > currentValue.ratio.max || accumulator.ratio.max < currentValue.ratio.min) {
-      console.log(accumulator);
-      console.log(currentValue);
-      console.log("no overlap");
-
       newValue.ratio.min = Infinity;
       newValue.ratio.max = -1;
     } else {
