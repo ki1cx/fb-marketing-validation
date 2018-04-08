@@ -16,6 +16,14 @@ import {
   PlacementValidations,
   PlacementMapping,
 } from 'placementValidation';
+import {
+  validateOptimizationGoal,
+  OptimizationGoalMapping,
+} from 'optimizationGoalValidation';
+import {
+  validateBillingEvent,
+  BillingEventMapping,
+} from 'billingEventValidation';
 
 export {
   validateCallToAction,
@@ -28,6 +36,10 @@ export {
   MediaRequirements,
   PlacementValidations,
   PlacementMapping,
+  validateOptimizationGoal,
+  OptimizationGoalMapping,
+  validateBillingEvent,
+  BillingEventMapping,
 }
 
 export default {

@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.0.2-9] - 2018-04-07
+- Add Optimization Goal mapping
+- Add Billing Event mapping
+
 ## [0.0.2-8] - 2018-04-01
 - Update keywords
 - Fix import statements in README
