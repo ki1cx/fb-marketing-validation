@@ -1,10 +1,9 @@
 {
   "name": "fb-marketing-validation",
-  "version": "0.0.2-10",
+  "version": "0.0.2-11",
   "description": "fb marketing validation",
   "main": "lib/index.js",
-  "peerDependencies": {
-  },
+  "peerDependencies": {},
   "keywords": [
     "fb",
     "validation",
