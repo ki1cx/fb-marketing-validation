@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.0.2-11] - 2018-04-08
+- Campaign Objective "event_responses" default to Page's objective
+
 ## [0.0.2-10] - 2018-04-08
 - Group campaign objective by business goal
 

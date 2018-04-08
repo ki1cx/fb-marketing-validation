@@ -43,7 +43,7 @@ const OptimizationGoalMapping = {
     OptimizationGoals.reach,
   ],
 
-  [CampaignObjectives.event_responses + '_page']: [
+  [CampaignObjectives.event_responses]: [
     OptimizationGoals.event_responses,
     OptimizationGoals.impressions,
     OptimizationGoals.post_engagement,
