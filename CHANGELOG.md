@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.0.2-10] - 2018-04-08
+- Group campaign objective by business goal
+
 ## [0.0.2-9] - 2018-04-07
 - Add Optimization Goal mapping
 - Add Billing Event mapping
