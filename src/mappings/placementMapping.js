@@ -15,6 +15,20 @@ const excludeItem = function (positions, items) {
   return positions.filter(position => items.indexOf(position) < 0);
 }
 
+const mergeMappings = mappings => {
+  let combinedMapping = {};
+
+  mappings.filter(mapping => mapping).map(mapping => {
+    Object.keys(mapping).map(publisher => {
+      !combinedMapping[publisher] && (combinedMapping[publisher] = [])
+      const placements = mapping[publisher]
+      combinedMapping[publisher] = [...new Set(combinedMapping[publisher].concat(placements))]
+    })
+  })
+
+  return combinedMapping;
+}
+
 const validation = {
   getNumberOfPositionsForPublishers: function(placements, publishers) {
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
@@ -378,7 +392,7 @@ const mapping = {
   },
 };
 
-
-export var PlacementValidations = validation;
-export var PlacementMapping = mapping;
+export const mergePlacementMappings = mergeMappings;
+export const PlacementValidations = validation;
+export const PlacementMapping = mapping;
 export default mapping;

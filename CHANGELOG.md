@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.0.2-12] - 2018-04-09
+- Add placement mapping merge function
+
 ## [0.0.2-11] - 2018-04-08
 - Campaign Objective "event_responses" default to Page's objective
 
